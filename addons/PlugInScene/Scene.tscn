@@ -11,9 +11,97 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_j0hr5")
-LabelforButton = NodePath("LabelHolder/LineEdit")
+LabelforButton = NodePath("TabContainer/ButtonMaker/LabelHolder/LineEdit")
 FileExplorer = NodePath("FileDialog")
 metadata/_edit_use_anchors_ = true
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 648.0
+
+[node name="ButtonMaker" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="LabelHolder" type="VBoxContainer" parent="TabContainer/ButtonMaker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 14.0
+offset_bottom = 617.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "Label on the button"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+placeholder_text = "Label"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "Functions for button"
+
+[node name="HSeparator2" type="HSeparator" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+
+[node name="Set Path Button" type="Button" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+tooltip_text = "Set the path for the button that is going to be created."
+text = "Set Path"
+
+[node name="Create" type="Button" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+tooltip_text = "Creates the scene for Ui componet. Saves the scene to the set path."
+text = "Create"
+
+[node name="PanelMaker" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="LabelHolder" type="VBoxContainer" parent="TabContainer/PanelMaker"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = -31.0
+offset_right = 118.0
+offset_bottom = 617.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="TabContainer/PanelMaker/LabelHolder"]
+layout_mode = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "Label on the button"
+
+[node name="LineEdit" type="LineEdit" parent="TabContainer/PanelMaker/LabelHolder"]
+layout_mode = 2
+placeholder_text = "Label"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/PanelMaker/LabelHolder"]
+layout_mode = 2
+
+[node name="Set Path Button" type="Button" parent="TabContainer/PanelMaker/LabelHolder"]
+layout_mode = 2
+tooltip_text = "Set the path for the button that is going to be created."
+text = "Set Path"
+
+[node name="Create" type="Button" parent="TabContainer/PanelMaker/LabelHolder"]
+layout_mode = 2
+tooltip_text = "Creates the scene for Ui componet. Saves the scene to the set path."
+text = "Create"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a Directory"
@@ -22,35 +110,8 @@ size = Vector2i(454, 400)
 unresizable = true
 file_mode = 2
 
-[node name="LabelHolder" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 5.0
-offset_bottom = 648.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="LabelHolder"]
-layout_mode = 2
-text = "Label on the button"
-
-[node name="LineEdit" type="LineEdit" parent="LabelHolder"]
-layout_mode = 2
-placeholder_text = "Label"
-
-[node name="HSeparator" type="HSeparator" parent="LabelHolder"]
-layout_mode = 2
-
-[node name="Set Path Button" type="Button" parent="LabelHolder"]
-layout_mode = 2
-tooltip_text = "Set the path for the button that is going to be created."
-text = "Set Path"
-
-[node name="Create" type="Button" parent="LabelHolder"]
-layout_mode = 2
-tooltip_text = "Creates the scene for Ui componet. Saves the scene to the set path."
-text = "Create"
-
+[connection signal="pressed" from="TabContainer/ButtonMaker/LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
+[connection signal="pressed" from="TabContainer/ButtonMaker/LabelHolder/Create" to="." method="_on_Createbutton_pressed"]
+[connection signal="pressed" from="TabContainer/PanelMaker/LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
+[connection signal="pressed" from="TabContainer/PanelMaker/LabelHolder/Create" to="." method="_on_Createbutton_pressed"]
 [connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
-[connection signal="pressed" from="LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
-[connection signal="pressed" from="LabelHolder/Create" to="." method="_on_Createbutton_pressed"]
