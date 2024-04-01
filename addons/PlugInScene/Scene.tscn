@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://cakiebpp3r638"]
+
+[ext_resource type="Script" path="res://addons/PlugInScene/UiCreater.gd" id="1_j0hr5"]
+
+[node name="UiCreater" type="Control" node_paths=PackedStringArray("LabelforButton", "FileExplorer")]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.933
+offset_bottom = 43.416
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_j0hr5")
+LabelforButton = NodePath("LabelHolder/LineEdit")
+FileExplorer = NodePath("FileDialog")
+metadata/_edit_use_anchors_ = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+initial_position = 5
+size = Vector2i(454, 400)
+unresizable = true
+file_mode = 2
+
+[node name="LabelHolder" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 5.0
+offset_bottom = 648.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="LabelHolder"]
+layout_mode = 2
+text = "Label on the button"
+
+[node name="LineEdit" type="LineEdit" parent="LabelHolder"]
+layout_mode = 2
+placeholder_text = "Label"
+
+[node name="HSeparator" type="HSeparator" parent="LabelHolder"]
+layout_mode = 2
+
+[node name="Set Path Button" type="Button" parent="LabelHolder"]
+layout_mode = 2
+tooltip_text = "Set the path for the button that is going to be created."
+text = "Set Path"
+
+[node name="Create" type="Button" parent="LabelHolder"]
+layout_mode = 2
+tooltip_text = "Creates the scene for Ui componet. Saves the scene to the set path."
+text = "Create"
+
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="pressed" from="LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
+[connection signal="pressed" from="LabelHolder/Create" to="." method="_on_Createbutton_pressed"]
