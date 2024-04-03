@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://br0f1f5sf0340"]
+
+[ext_resource type="Script" path="res://addons/bendiuiplugin/Scripts/ExitButtonMaker.gd" id="1_pfhud"]
+[ext_resource type="PackedScene" uid="uid://btiiw8xqelquo" path="res://addons/PlugInScene/ExitButton.tscn" id="2_6clkg"]
+[ext_resource type="Texture2D" uid="uid://djmjwto3phssb" path="res://addons/bendiuiplugin/Art/BlueButton.tres" id="3_ar75b"]
+[ext_resource type="Texture2D" uid="uid://dlku5dg7gnbfm" path="res://addons/bendiuiplugin/Art/BlueButtonPressed.tres" id="4_gub1u"]
+[ext_resource type="Script" path="res://addons/bendiuiplugin/Scripts/exit.gd" id="5_v3k5v"]
+
+[node name="ExitButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 79.0
+offset_top = 22.0
+offset_right = 119.0
+offset_bottom = 62.0
+script = ExtResource("1_pfhud")
+
+[node name="ExitButton" type="TextureButton" parent="." instance=ExtResource("2_6clkg")]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = -12.0
+offset_right = 98.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_ar75b")
+texture_pressed = ExtResource("4_gub1u")
+script = ExtResource("5_v3k5v")
+
+[connection signal="pressed" from="ExitButton" to="ExitButton" method="_on_pressed"]

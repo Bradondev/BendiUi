@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dlku5dg7gnbfm"]
+
+[ext_resource type="Texture2D" uid="uid://cobb1gfm30k1p" path="res://addons/bendiuiplugin/Art/blue_spritesheet.png" id="1_if1c3"]
+
+[resource]
+atlas = ExtResource("1_if1c3")
+region = Rect2(0, 102, 70, 11)

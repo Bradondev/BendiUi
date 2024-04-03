@@ -20,4 +20,4 @@ project/assembly_name="Bendi Ui"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bendiuiplugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/bendiuiplugin/Scripts/plugin.cfg")

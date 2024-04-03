@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dww5xwwri2d2y"]
+
+[ext_resource type="Texture2D" uid="uid://djmjwto3phssb" path="res://addons/bendiuiplugin/Art/BlueButton.tres" id="1_5fviv"]
+[ext_resource type="Texture2D" uid="uid://dlku5dg7gnbfm" path="res://addons/bendiuiplugin/Art/BlueButtonPressed.tres" id="2_syhd6"]
+
+[sub_resource type="GDScript" id="GDScript_yn205"]
+script/source = "extends TextureButton
+
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+
+func _on_pressed():
+	get_tree().quit()
+	# GetTree().Root.AddChild(instance);
+"
+
+[node name="Control" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_5fviv")
+texture_pressed = ExtResource("2_syhd6")
+script = SubResource("GDScript_yn205")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

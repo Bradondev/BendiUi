@@ -2,17 +2,19 @@
 
 [ext_resource type="Script" path="res://addons/PlugInScene/UiCreater.gd" id="1_j0hr5"]
 
-[node name="UiCreater" type="Control" node_paths=PackedStringArray("LabelforButton", "FileExplorer")]
+[node name="UiCreater" type="Control" node_paths=PackedStringArray("LabelforButton", "FileExplorer", "simpleButton", "Optionbutton")]
 layout_mode = 3
+anchor_left = 0.007
 anchor_right = 1.0
-anchor_bottom = 0.933
-offset_bottom = 43.416
+offset_left = -8.064
+offset_bottom = 648.0
 grow_vertical = 2
-size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_j0hr5")
 LabelforButton = NodePath("TabContainer/ButtonMaker/LabelHolder/LineEdit")
 FileExplorer = NodePath("FileDialog")
+simpleButton = NodePath("TabContainer/ButtonMaker/SampleButton")
+Optionbutton = NodePath("TabContainer/ButtonMaker/LabelHolder/Label4/OptionButton")
 metadata/_edit_use_anchors_ = true
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -20,6 +22,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 648.0
+grow_horizontal = 2
 
 [node name="ButtonMaker" type="TabBar" parent="TabContainer"]
 layout_mode = 2
@@ -32,6 +35,7 @@ offset_left = 5.0
 offset_top = 14.0
 offset_bottom = 617.0
 grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" type="Label" parent="TabContainer/ButtonMaker/LabelHolder"]
 layout_mode = 2
@@ -52,6 +56,26 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 16
 text = "Functions for button"
 
+[node name="Label4" type="Label" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "On Pressed"
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/ButtonMaker/LabelHolder/Label4"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 139.0
+offset_bottom = 22.0
+item_count = 3
+popup/item_0/text = "ExitGame"
+popup/item_0/id = 0
+popup/item_1/text = "Change Scene"
+popup/item_1/id = 1
+popup/item_2/text = "Pause Game"
+popup/item_2/id = 2
+
 [node name="HSeparator2" type="HSeparator" parent="TabContainer/ButtonMaker/LabelHolder"]
 layout_mode = 2
 
@@ -64,6 +88,29 @@ text = "Set Path"
 layout_mode = 2
 tooltip_text = "Creates the scene for Ui componet. Saves the scene to the set path."
 text = "Create"
+
+[node name="HSeparator3" type="HSeparator" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="TabContainer/ButtonMaker/LabelHolder"]
+layout_mode = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "Sample Button"
+
+[node name="SampleButton" type="Button" parent="TabContainer/ButtonMaker"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 435.0
+offset_top = -11.5
+offset_right = -422.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "test"
 
 [node name="PanelMaker" type="TabBar" parent="TabContainer"]
 visible = false
@@ -108,8 +155,11 @@ title = "Open a Directory"
 initial_position = 5
 size = Vector2i(454, 400)
 unresizable = true
+ok_button_text = "Select Current Folder"
 file_mode = 2
 
+[connection signal="text_changed" from="TabContainer/ButtonMaker/LabelHolder/LineEdit" to="." method="_on_LabelChanged_changed"]
+[connection signal="item_selected" from="TabContainer/ButtonMaker/LabelHolder/Label4/OptionButton" to="." method="OnPressedFunctionChanged"]
 [connection signal="pressed" from="TabContainer/ButtonMaker/LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
 [connection signal="pressed" from="TabContainer/ButtonMaker/LabelHolder/Create" to="." method="_on_Createbutton_pressed"]
 [connection signal="pressed" from="TabContainer/PanelMaker/LabelHolder/Set Path Button" to="." method="_on_setpathbutton_pressed"]
